@@ -1,0 +1,86 @@
+<main class="d-flex flex-column">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb m-0">
+        <li class="breadcrumb-item">Administration</li>
+        <li class="breadcrumb-item active" aria-current="page">Gestion des articles</li>
+    </ol>
+  </nav>
+  <div class="flex-grow-1 d-md-flex align-items-stretch">
+    <?php include 'admin_menu.phtml'; ?>
+    <section class="col-md-7 py-4 mx-auto">
+      <header class="jumbotron text-center">
+        <h2 class="text-center mb-4 display-4">Gestion des articles</h2>
+        <hr class="my-4">
+        <a class="btn btn-dark" href="https://sql.sh/cours/insert-into" target="_blank"><i class="fa fa-external-link-alt" aria-hidden="true"></i> SQL INSERT INTO</a>
+        <a class="btn btn-dark" href="https://sql.sh/cours/update" target="_blank"><i class="fa fa-external-link-alt" aria-hidden="true"></i> SQL UPDATE</a>
+        <a class="btn btn-dark" href="https://sql.sh/cours/delete" target="_blank"><i class="fa fa-external-link-alt" aria-hidden="true"></i> SQL DELETE</a>
+        <a class="btn btn-dark" href="https://www.php.net/manual/fr/pdostatement.rowcount.php" target="_blank"><i class="fa fa-external-link-alt" aria-hidden="true"></i> Nombre de lignes affectées par une requête</a>
+      </header>
+      <nav class="mb-4">
+        <a class="btn btn-primary" href="admin_posts_new.php">
+          <i class="fas fa-plus" aria-hidden="true"></i>
+          Créer un article
+        </a>
+      </nav>
+      <table class="table table-striped">
+        <caption>
+          Liste des posts classés par ordre chronologique inversé
+          <strong>(Nombre des post)) articles au total)</strong>
+        </caption>
+        <thead class="thead-dark">
+          <tr>
+            <th>ID</th>
+            <th>Création</th>
+            <th>Titre</th>
+            <th>Auteur</th>
+            <th>Catégorie</th>
+            <th>Modifier</th>
+            <th>Supprimer</th>
+          </tr>
+        </thead>
+        <tbody>
+        <?php foreach($posts as $post): ?>
+          <tr>
+            <td>
+            <?=$post['Id'] ?>
+            </td>
+            <td>
+            <?=$post['CreationTimestamp']?>
+            </td>
+            <td>
+              <a
+                href="show_post.php?id=<?=$post['Id'] ?>">
+               <?=$post['Title']?>
+              
+              </a>
+            </td>
+            <td>
+              <?=$post['FirstName']?>
+              <?=$post['LastName']?>
+            </td>
+            <td>
+              <?=$post['Category_Name']?>
+            </td>
+            <td>
+              <a
+                class="btn btn-warning"
+                title="Modifier le post"
+                href="admin_posts_edit.php?id=<?= $post['Id'] ?>">
+                <i class="fa fa-pen-nib" aria-hidden="true"></i>
+              </a>
+            </td>
+            <td>
+              <a
+                href="admin_posts_delete.php?id=<?= $post['Id'] ?>"
+                class="btn btn-danger"
+                title="Supprimer le post">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </a>
+            </td>
+          </tr>
+          <?php endforeach ?>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</main>

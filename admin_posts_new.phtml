@@ -1,0 +1,93 @@
+<main class="d-flex flex-column">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item">Administration</li>
+      <li class="breadcrumb-item"><a href="admin_posts_index.php">Gestion des articles</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Créer un nouvel article</li>
+    </ol>
+  </nav>
+  <div class="flex-grow-1 d-md-flex align-items-stretch">
+    <?php include 'admin_menu.phtml'; ?>
+    <form method="post"  class="col-md-7 py-4 mx-auto" novalidate>
+      <fieldset>
+        <legend class="text-center display-4 mb-5">Rédiger un article</legend>
+        <div class="form-row align-items-center mb-3">
+          <div class="col-6">
+            <label for="category">Catégorie de l'article</label>
+            <select
+              id="category"
+              name="category"
+              class="custom-select">
+              
+              <option selected
+              value="Choisir une catégorie">Choisir une catégorie</option>
+              <?php foreach($categories as $category): ?>
+               
+                  <option
+                    
+                     value="<?=$category['Id']?>"><?=($category['Name']) ?> 
+                   
+                  </option>
+                
+                  
+                  <?php endforeach ?>
+             
+            </select>
+          
+            <div class="invalid-feedback"></div>
+            
+          </div>
+          <div class="col-6">
+            <label for="author">Auteur</label>
+              <select
+                id="author"
+                name="author"
+                class="custom-select">
+              <option>Choisir un auteur</option>
+              
+              <?php foreach($authors as $author): ?>
+               
+                  <option
+                    
+                    value="<?=$author['Id'] ?>">
+                   <?=$author['FirstName'] ?> <?=$author['LastName'] ?> 
+                  </option>
+              
+                  
+                  <?php endforeach ?>
+            </select>
+            
+          </div>
+        </div>
+        <div class="form-group">
+          
+          <label for="title">Titre de l'article</label>
+          <input
+         
+            id="title"
+            name="title"
+            type="text"
+            class="form-control"
+            required
+            value="titre"
+            placeholder="Saisir un titre évocateur">
+            
+        </div>
+        <div
+          class="form-group">
+          <label for="content">Texte de l'article</label>
+          <textarea
+          
+            id="content"
+            name="content"
+            class="form-control"
+            spellcheck="true"
+            rows="8">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo nemo cupiditate blanditiis perferendis excepturi, inventore reiciendis sed cum distinctio quae, accusantium magni aliquam saepe architecto expedita sequi molestiae quibusdam vitae.</textarea>
+           </div>
+           <button type="submit" class="btn btn-primary" >Enregistrer</button>
+        </div>
+        
+      </fieldset>
+    </form>
+  </div>
+</main>
